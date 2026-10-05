@@ -1,5 +1,7 @@
 package br.com.senai.infoa.backend.projeto_documento.models;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,8 +32,8 @@ public class Habilidade {
     private String descricao;
 
     @ManyToOne
-    @JoinColumn(name = "habilidade_id") 
-    private Habilidade habilidade;
+    @JoinColumn(name = "area_id") 
+    private Area area;
 
     @ManyToMany
     @JoinTable(
@@ -39,15 +41,17 @@ public class Habilidade {
         joinColumns = @JoinColumn(name = "habilidade_id"),
         inverseJoinColumns = @JoinColumn(name = "pessoa_id")
     )
-    private java.util.List<Pessoa> pessoa;
+    private java.util.List<Pessoa> pessoas;
 
     public Habilidade() {
     }
 
-    public Habilidade(String descricao, Integer id, String nivel, String nome) {
+    public Habilidade(Area area, String descricao, Integer id, String nome, List<Pessoa> pessoas) {
+        this.area = area;
         this.descricao = descricao;
         this.id = id;
         this.nome = nome;
+        this.pessoas = pessoas;
     }
 
     public Integer getId() {
@@ -74,9 +78,23 @@ public class Habilidade {
         this.descricao = descricao;
     }
 
+    public Area getArea() {
+        return area;
+    }
+
+    public void setArea(Area area) {
+        this.area = area;
+    }
+
+    public java.util.List<Pessoa> getPessoas() {
+        return pessoas;
+    }
+
+    public void setPessoas(java.util.List<Pessoa> pessoas) {
+        this.pessoas = pessoas;
+    }
+
     
-
-
     
 }
 

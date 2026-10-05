@@ -3,6 +3,7 @@ package br.com.senai.infoa.backend.projeto_documento.models;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -31,6 +32,10 @@ public class Pessoa {
         this.id = id;
         this.nome = nome;
         this.requisito = requisito;
+    }
+
+    public Pessoa(Integer id) {
+        this.id = id;
     }
 
     public Integer getId() {
